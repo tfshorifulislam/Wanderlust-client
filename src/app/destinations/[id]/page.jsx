@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { UpdateModal } from '@/components/Modal';
 import { Button } from '@heroui/react';
+import { DeleteAlert } from '@/components/DeleteAlert';
 
 const DestinationsDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -25,10 +26,8 @@ const DestinationsDetailsPage = async ({ params }) => {
                 </Link>
 
                 <div className="flex items-center gap-3">
-                       <UpdateModal destination={destination} />
-                    <Button className="flex items-center gap-2 px-5 py-2 text-red-600 rounded-xl hover:bg-red-50 transition" variant="outline">
-                        🗑 Cancel
-                    </Button>
+                    <UpdateModal destination={destination} />
+                    <DeleteAlert dest={destination} />
                 </div>
             </div>
 
