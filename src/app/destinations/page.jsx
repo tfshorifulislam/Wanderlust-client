@@ -14,6 +14,14 @@ import {
 import React from 'react';
 
 const DestinationsPage = () => {
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const destination = Object.fromEntries(formData.entries());
+    console.log('New Destination:', destination);
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-white to-sky-50 py-14 px-4">
       <div className="max-w-5xl mx-auto bg-white shadow-2xl rounded-[32px] overflow-hidden border border-gray-100">
@@ -29,7 +37,7 @@ const DestinationsPage = () => {
         </div>
 
         {/* Form */}
-        <form className="p-8 md:p-12 space-y-10">
+        <form onSubmit={onSubmit} className="p-8 md:p-12 space-y-10">
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
