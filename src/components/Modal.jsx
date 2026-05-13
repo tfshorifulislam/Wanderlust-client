@@ -1,21 +1,23 @@
 "use client";
 import { Button, Select, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField } from "@heroui/react";
 
-export function UpdateModal() {
+export function UpdateModal({ destination }) {
+
+    const { _id, destinationName, country, category, price, duration, departureDate, imageUrl, description } = destination;
 
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const destination = Object.fromEntries(formData.entries());
         console.log('New Destination:', destination);
-        // const res = await fetch('http://localhost:5000/destinations', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(destination)
-        // })
+        const res = await fetch(`http://localhost:5000/destinations/${_id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(destination)
+        })
 
-        // const data = await res.json();
-        // console.log('Response from server:', data);
+        const data = await res.json();
+        console.log('Response from modal server:', data);
     }
 
     return (
@@ -49,7 +51,7 @@ export function UpdateModal() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                                        <TextField name="destinationName" isRequired className="md:col-span-2">
+                                        <TextField defaultValue={destinationName} name="destinationName" isRequired className="md:col-span-2">
                                             <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                                 Destination Name
                                             </Label>
@@ -60,7 +62,7 @@ export function UpdateModal() {
                                             <FieldError />
                                         </TextField>
 
-                                        <TextField name="country" isRequired>
+                                        <TextField defaultValue={country} name="country" isRequired>
                                             <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                                 Country
                                             </Label>
@@ -75,7 +77,7 @@ export function UpdateModal() {
                                             <Label className="block text-sm font-semibold text-gray-700">
                                                 Category
                                             </Label>
-                                            <Select name="category" placeholder="Select category">
+                                            <Select defaultValue={category} name="category" placeholder="Select category">
                                                 <Button className="w-full h-14 rounded-2xl border border-gray-300 bg-white px-5 text-left text-base text-gray-700 shadow-sm hover:border-cyan-500 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100 transition-all flex items-center justify-between">
                                                     <Select.Value />
                                                     <Select.Indicator />
@@ -96,7 +98,7 @@ export function UpdateModal() {
                                             </Select>
                                         </div>
 
-                                        <TextField name="price" type="number" isRequired>
+                                        <TextField defaultValue={price} name="price" type="number" isRequired>
                                             <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                                 Price (USD)
                                             </Label>
@@ -108,7 +110,7 @@ export function UpdateModal() {
                                             <FieldError />
                                         </TextField>
 
-                                        <TextField name="duration" isRequired>
+                                        <TextField defaultValue={duration} name="duration" isRequired>
                                             <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                                 Duration
                                             </Label>
@@ -119,7 +121,7 @@ export function UpdateModal() {
                                             <FieldError />
                                         </TextField>
 
-                                        <TextField name="departureDate" type="date" isRequired className="md:col-span-2">
+                                        <TextField defaultValue={departureDate} name="departureDate" type="date" isRequired className="md:col-span-2">
                                             <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                                 Departure Date
                                             </Label>
@@ -130,7 +132,7 @@ export function UpdateModal() {
                                             <FieldError />
                                         </TextField>
 
-                                        <TextField name="imageUrl" isRequired className="md:col-span-2">
+                                        <TextField defaultValue={imageUrl} name="imageUrl" isRequired className="md:col-span-2">
                                             <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                                 Image URL
                                             </Label>
@@ -142,7 +144,7 @@ export function UpdateModal() {
                                             <FieldError />
                                         </TextField>
 
-                                        <TextField name="description" isRequired className="md:col-span-2">
+                                        <TextField defaultValue={description} name="description" isRequired className="md:col-span-2">
                                             <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                                 Description
                                             </Label>

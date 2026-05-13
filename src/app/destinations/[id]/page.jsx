@@ -25,7 +25,7 @@ const DestinationsDetailsPage = async ({ params }) => {
                 </Link>
 
                 <div className="flex items-center gap-3">
-                       <UpdateModal />
+                       <UpdateModal destination={destination} />
                     <Button className="flex items-center gap-2 px-5 py-2 text-red-600 rounded-xl hover:bg-red-50 transition" variant="outline">
                         🗑 Cancel
                     </Button>
