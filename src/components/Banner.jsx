@@ -60,13 +60,6 @@ const Banner = () => {
               <h3 className="text-xs uppercase tracking-widest text-white/70">Travelers</h3>
               <p className="text-sm md:text-base font-medium">2 - 8 People</p>
             </div>
-
-            {/* Search Button */}
-            <div className="md:ml-auto col-span-2 md:col-span-1 flex items-center justify-center mt-3 md:mt-0">
-              <button className="w-full md:w-auto bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-10 py-4 rounded-2xl transition-all text-base">
-                Search
-              </button>
-            </div>
           </div>
         </div>
       </div>
