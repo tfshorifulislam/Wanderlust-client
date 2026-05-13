@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Wanderlust 🌍✈️
 
-## Getting Started
+Wanderlust is a modern full-stack travel booking web application where users can explore beautiful destinations, view travel package details, and experience a beautiful responsive travel interface.
 
-First, run the development server:
+The project is built using Next.js for the frontend, Express.js and Node.js for the backend, and MongoDB as the database.
+
+---
+
+## 🚀 Features
+
+- Modern and responsive UI
+- Dynamic destination details page
+- Full-stack travel application
+- REST API integration
+- Beautiful hero sections
+- Travel package cards
+- Sticky booking section
+- Responsive gallery layout
+- Dynamic routing
+- Optimized image loading
+- Clean component-based architecture
+
+---
+
+## 🛠 Technologies Used
+
+### Frontend
+- React
+- Next.js
+- Hero UI
+- React Icons
+- Tailwind CSS
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- MongoDB
+
+---
+
+## 📁 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+wanderlust/
+│
+├── client/
+│   ├── src/
+│   ├── app/
+│   ├── components/
+│   └── public/
+│
+├── server/
+│   ├── routes/
+│   ├── controllers/
+│   ├── database/
+│   └── index.js
+│
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ⚙️ Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Clone Repository
 
-## Learn More
+```bash
+git clone your-repository-url
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💻 Frontend Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cd client
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+Frontend running on:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+http://localhost:3000
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🖥 Backend Setup
+
+```bash
+cd server
+npm install
+npm start
+```
+
+Backend running on:
+
+```bash
+http://localhost:5000
+```
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file inside the server folder.
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+PORT=5000
+```
+
+---
+
+## 🌐 API Routes
+
+### Get All Destinations
+
+```bash
+GET /destinations
+```
+
+### Get Single Destination
+
+```bash
+GET /destinations/:id
+```
+
+---
+
+## 🎨 UI Highlights
+
+- Modern travel inspired design
+- Glassmorphism effects
+- Responsive layouts
+- Interactive hover animations
+- Premium booking card design
+- Clean typography
+- Beautiful destination gallery
+
+---
+
+## 📌 Future Improvements
+
+- Authentication system
+- Booking functionality
+- Payment gateway integration
+- User dashboard
+- Admin panel
+- Search and filtering
+- Wishlist feature
+- Reviews and ratings
+
+---
+
+## 👨‍💻 Author
+
+Developed with ❤️ using modern web technologies.
+
+---
+
+## 📄 License
+
+This project is open-source and available for learning and personal use.
