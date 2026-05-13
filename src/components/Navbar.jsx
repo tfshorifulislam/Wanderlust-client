@@ -34,6 +34,9 @@ const Navbar = () => {
           <Link href="/bookings" className={isActive("/bookings")}>
             My Bookings
           </Link>
+          <Link href="/destinationsAdd" className={isActive("/destinationsAdd")}>
+            Add Destination
+          </Link>
           <Link href="/admin" className={isActive("/admin")}>
             Admin
           </Link>
@@ -89,6 +92,9 @@ const Navbar = () => {
             </Link>
             <Link href="/bookings" onClick={closeMenu} className={isActive("/bookings")}>
               My Bookings
+            </Link>
+            <Link href="/destinationsAdd" onClick={closeMenu} className={isActive("/destinationsAdd")}>
+              Add Destination
             </Link>
             <Link href="/admin" onClick={closeMenu} className={isActive("/admin")}>
               Admin
