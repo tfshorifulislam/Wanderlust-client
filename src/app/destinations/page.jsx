@@ -15,12 +15,21 @@ import React from 'react';
 
 const DestinationsPage = () => {
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const destination = Object.fromEntries(formData.entries());
     console.log('New Destination:', destination);
+    const res = await fetch('http://localhost:5000/destinations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(destination)
+    })
+
+    const data = await res.json();
+    console.log('Response from server:', data);
   }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-white to-sky-50 py-14 px-4">
