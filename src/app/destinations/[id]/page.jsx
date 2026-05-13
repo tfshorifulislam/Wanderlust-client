@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { UpdateModal } from '@/components/Modal';
+import { Button } from '@heroui/react';
 
 const DestinationsDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -23,12 +25,10 @@ const DestinationsDetailsPage = async ({ params }) => {
                 </Link>
 
                 <div className="flex items-center gap-3">
-                    <button className="flex items-center gap-2 px-5 py-2 border border-gray-300 rounded-xl hover:bg-gray-50 transition">
-                        ✏️ Edit
-                    </button>
-                    <button className="flex items-center gap-2 px-5 py-2 border border-red-300 text-red-600 rounded-xl hover:bg-red-50 transition">
+                       <UpdateModal />
+                    <Button className="flex items-center gap-2 px-5 py-2 text-red-600 rounded-xl hover:bg-red-50 transition" variant="outline">
                         🗑 Cancel
-                    </button>
+                    </Button>
                 </div>
             </div>
 
@@ -121,9 +121,9 @@ const DestinationsDetailsPage = async ({ params }) => {
                             </div>
 
                             {/* Book Now Button */}
-                            <button className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-4 rounded-2xl text-lg transition-all duration-200 mb-6">
+                            <Button className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-4 rounded-2xl text-lg transition-all duration-200 mb-6">
                                 Book Now →
-                            </button>
+                            </Button>
 
                             {/* Benefits */}
                             <div className="space-y-3 text-sm">
