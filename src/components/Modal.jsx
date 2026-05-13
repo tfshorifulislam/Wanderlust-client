@@ -1,5 +1,6 @@
 "use client";
 import { Button, Select, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 export function UpdateModal({ destination }) {
 
@@ -18,6 +19,7 @@ export function UpdateModal({ destination }) {
 
         const data = await res.json();
         console.log('Response from modal server:', data);
+        redirect(`/destinations/${_id}`);
     }
 
     return (
