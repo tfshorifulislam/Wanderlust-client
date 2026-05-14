@@ -5,8 +5,22 @@ import { usePathname } from "next/navigation";
 import { FaRegUser } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 
 const Navbar = () => {
+
+
+  const {
+    data: session
+  } = authClient.useSession()
+  // console.log(session)
+
+  const user = session?.user;
+  console.log('user info', user)
+
+
+
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,21 +67,31 @@ const Navbar = () => {
 
         {/* Desktop Menu - Right */}
         <div className="hidden md:flex items-center gap-8 text-[15px] font-medium">
-          <Link
-            href="/profile"
-            className={`flex items-center gap-2 ${isActive("/profile")}`}
-          >
-            <FaRegUser />
-            Profile
-          </Link>
+          {user ?
+            <div className="hidden md:flex items-center gap-8 text-[15px] font-medium">
+              <Link
+                href="/profile"
+                className={`flex items-center gap-2 ${isActive("/profile")}`}
+              >
+                <Avatar>
+                  <Avatar.Image alt={user?.name} src={user?.image} />
+                  <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                </Avatar>
+              </Link>
+              <Button variant="danger">
+                Logout
+              </Button>
+            </div>
+            :
+            <div className="hidden md:flex items-center gap-8 text-[15px] font-medium">
+              <Link href="/login" className={isActive("/login")}>
+                Login
+              </Link>
 
-          <Link href="/login" className={isActive("/login")}>
-            Login
-          </Link>
-
-          <Link href="/signup" className={isActive("/signup")}>
-            Sign Up
-          </Link>
+              <Link href="/signup" className={isActive("/signup")}>
+                Sign Up
+              </Link>
+            </div>}
         </div>
 
         {/* Hamburger Button (Mobile) */}
@@ -84,39 +108,43 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-white border-t shadow-lg">
           <div className="flex flex-col px-6 py-6 space-y-5 text-[16px] font-medium">
-            <Link href="/" onClick={closeMenu} className={isActive("/")}>
-              Home
-            </Link>
-            <Link href="/destinations" onClick={closeMenu} className={isActive("/destinations")}>
-              Destinations
-            </Link>
-            <Link href="/bookings" onClick={closeMenu} className={isActive("/bookings")}>
-              My Bookings
-            </Link>
-            <Link href="/destinationsAdd" onClick={closeMenu} className={isActive("/destinationsAdd")}>
-              Add Destination
-            </Link>
-            <Link href="/admin" onClick={closeMenu} className={isActive("/admin")}>
-              Admin
-            </Link>
-
-            <div className="pt-4 border-t">
-              <Link
-                href="/profile"
-                onClick={closeMenu}
-                className={`flex items-center gap-2 ${isActive("/profile")}`}
-              >
-                <FaRegUser />
-                Profile
+            {user ? <div className="flex flex-col px-6 py-6 space-y-5 text-[16px] font-medium">
+              <Link href="/" onClick={closeMenu} className={isActive("/")}>
+                Home
               </Link>
-            </div>
+              <Link href="/destinations" onClick={closeMenu} className={isActive("/destinations")}>
+                Destinations
+              </Link>
+              <Link href="/bookings" onClick={closeMenu} className={isActive("/bookings")}>
+                My Bookings
+              </Link>
+              <Link href="/destinationsAdd" onClick={closeMenu} className={isActive("/destinationsAdd")}>
+                Add Destination
+              </Link>
+              <Link href="/admin" onClick={closeMenu} className={isActive("/admin")}>
+                Admin
+              </Link>
 
-            <Link href="/login" onClick={closeMenu} className={isActive("/login")}>
-              Login
-            </Link>
-            <Link href="/signup" onClick={closeMenu} className={isActive("/signup")}>
-              Sign Up
-            </Link>
+              <div className="pt-4 border-t">
+                <Link
+                  href="/profile"
+                  onClick={closeMenu}
+                  className={`flex items-center gap-2 ${isActive("/profile")}`}
+                >
+                  <FaRegUser />
+                  Profile
+                </Link>
+              </div>
+            </div>
+              :
+              <div className="flex flex-col px-6 py-6 space-y-5 text-[16px] font-medium">
+                <Link href="/login" onClick={closeMenu} className={isActive("/login")}>
+                  Login
+                </Link>
+                <Link href="/signup" onClick={closeMenu} className={isActive("/signup")}>
+                  Sign Up
+                </Link>
+              </div>}
           </div>
         </div>
       )}

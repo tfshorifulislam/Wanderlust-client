@@ -11,11 +11,9 @@ const LoginPage = () => {
         const user = Object.fromEntries(formData.entries())
         console.log(user, 'user info')
 
-        const { data, error } = await authClient.signUp.email({
+        const { data, error } = await authClient.signIn.email({
             email: user.email,
             password: user.password,
-            name: user.name,
-            image: user.image,
         })
         console.log(data, error)
         if (data) {
