@@ -1,9 +1,9 @@
-import React from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { UpdateModal } from '@/components/Modal';
-import { Button } from '@heroui/react';
 import { DeleteAlert } from '@/components/DeleteAlert';
+import BookingCard from '@/components/BookingCard';
 
 const DestinationsDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -97,50 +97,7 @@ const DestinationsDetailsPage = async ({ params }) => {
                     </div>
 
                     {/* Right Sidebar - Booking Card */}
-                    <div className="lg:col-span-4">
-                        <div className="bg-white border border-gray-200 rounded-3xl p-8 sticky top-8 shadow-lg">
-                            <div className="mb-6">
-                                <p className="text-gray-500 text-sm">Starting from</p>
-                                <p className="text-4xl font-bold text-cyan-600 mt-1">
-                                    ${destination.price}
-                                    <span className="text-base font-normal text-gray-500">/person</span>
-                                </p>
-                            </div>
-
-                            {/* Date */}
-                            <div className="mb-6">
-                                <p className="text-sm text-gray-500 mb-2">Departure Date</p>
-                                <div className="border border-gray-300 rounded-2xl px-4 py-3 text-lg font-medium">
-                                    {new Date(destination.departureDate).toLocaleDateString('en-US', {
-                                        month: 'numeric',
-                                        day: 'numeric',
-                                        year: 'numeric'
-                                    })}
-                                </div>
-                            </div>
-
-                            {/* Book Now Button */}
-                            <Button className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-4 rounded-2xl text-lg transition-all duration-200 mb-6">
-                                Book Now →
-                            </Button>
-
-                            {/* Benefits */}
-                            <div className="space-y-3 text-sm">
-                                <div className="flex items-center gap-3 text-gray-700">
-                                    <span className="text-green-500">✓</span>
-                                    Free cancellation up to 7 days
-                                </div>
-                                <div className="flex items-center gap-3 text-gray-700">
-                                    <span className="text-green-500">✓</span>
-                                    Travel insurance included
-                                </div>
-                                <div className="flex items-center gap-3 text-gray-700">
-                                    <span className="text-green-500">✓</span>
-                                    24/7 customer support
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <BookingCard destination={destination} />
                 </div>
             </div>
         </div>
