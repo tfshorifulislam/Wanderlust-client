@@ -3,7 +3,7 @@ import { authClient } from "@/lib/auth-client";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { redirect } from "next/navigation";
 
-const SignUpPage = () => {
+const LoginPage = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -31,30 +31,11 @@ const SignUpPage = () => {
 
                 {/* Header */}
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl font-semibold text-gray-900">Create Account</h1>
+                    <h1 className="text-3xl font-semibold text-gray-900">Login</h1>
                     <p className="text-gray-500 mt-1">Start your adventure with Wanderlust</p>
                 </div>
 
                 <Form className="flex flex-col gap-6" onSubmit={onSubmit}>
-
-                    {/* Name Field */}
-                    <TextField
-                        isRequired
-                        name="name"
-                        type="text"
-                    >
-                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
-                            Full Name
-                        </Label>
-                        <div className="relative">
-                            <Input
-                                placeholder="Enter your name"
-                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
-                            />
-                        </div>
-                        <FieldError className="text-red-500 text-sm mt-1" />
-                    </TextField>
-
 
                     {/* Email Field */}
                     <TextField
@@ -74,23 +55,6 @@ const SignUpPage = () => {
                         <div className="relative">
                             <Input
                                 placeholder="Enter your email"
-                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
-                            />
-                        </div>
-                        <FieldError className="text-red-500 text-sm mt-1" />
-                    </TextField>
-
-                    {/* image filed */}
-                    <TextField
-                        name="image"
-                        type="url"
-                    >
-                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
-                            Image Url
-                        </Label>
-                        <div className="relative">
-                            <Input
-                                placeholder="Enter your image URI"
                                 className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
                             />
                         </div>
@@ -137,7 +101,7 @@ const SignUpPage = () => {
                         type="submit"
                         className="flex-1 w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3.5 rounded-sm  transition-colors"
                     >
-                        Create Account
+                        Login
                     </Button>
 
 
@@ -153,8 +117,8 @@ const SignUpPage = () => {
                 </div>
 
                 <p className="text-center text-sm text-gray-600 mt-6">
-                    Already have an account?{' '}
-                    <a href="/login" className="text-sky-500 hover:underline font-medium">Sign In</a>
+                    Don't have an account?{' '}
+                    <a href="/signup" className="text-sky-500 hover:underline font-medium">Sign Up</a>
                 </p>
 
             </div>
@@ -162,4 +126,4 @@ const SignUpPage = () => {
     );
 };
 
-export default SignUpPage;
+export default LoginPage;
