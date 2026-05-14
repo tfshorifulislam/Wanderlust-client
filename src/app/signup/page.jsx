@@ -2,6 +2,12 @@
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 
 const SignUpPage = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const user = Object.fromEntries(formData.entries())
+        console.log(user, 'user info')
+    }
     return (
         <div className="min-h-screen bg-[#f0f4f8] flex items-center justify-center p-6">
             <div className="w-full max-w-2xl bg-white border border-gray-200 rounded-2xl shadow-sm p-10">
@@ -12,19 +18,13 @@ const SignUpPage = () => {
                     <p className="text-gray-500 mt-1">Start your adventure with Wanderlust</p>
                 </div>
 
-                <Form className="flex flex-col gap-6">
+                <Form className="flex flex-col gap-6" onSubmit={onSubmit}>
 
                     {/* Name Field */}
                     <TextField
                         isRequired
                         name="name"
                         type="text"
-                        validate={(value) => {
-                            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                                return "Please enter a valid email address";
-                            }
-                            return null;
-                        }}
                     >
                         <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
                             Full Name
@@ -63,6 +63,23 @@ const SignUpPage = () => {
                         <FieldError className="text-red-500 text-sm mt-1" />
                     </TextField>
 
+                    {/* image filed */}
+                    <TextField
+                        name="image"
+                        type="url"
+                    >
+                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
+                            Image Url
+                        </Label>
+                        <div className="relative">
+                            <Input
+                                placeholder="Enter your image URI"
+                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
+                            />
+                        </div>
+                        <FieldError className="text-red-500 text-sm mt-1" />
+                    </TextField>
+
                     {/* Password Field */}
                     <TextField
                         isRequired
@@ -95,42 +112,7 @@ const SignUpPage = () => {
                             Must be at least 8 characters with 1 uppercase and 1 number
                         </Description>
                         <FieldError className="text-red-500 text-sm mt-1" />
-                    </TextField>
-
-
-                    {/* Confirm Password Field */}
-                    <TextField
-                        isRequired
-                        minLength={8}
-                        name="password"
-                        type="password"
-                        validate={(value) => {
-                            if (value.length < 8) {
-                                return "Password must be at least 8 characters";
-                            }
-                            if (!/[A-Z]/.test(value)) {
-                                return "Password must contain at least one uppercase letter";
-                            }
-                            if (!/[0-9]/.test(value)) {
-                                return "Password must contain at least one number";
-                            }
-                            return null;
-                        }}
-                    >
-                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
-                            Confirm Password
-                        </Label>
-                        <div className="relative">
-                            <Input
-                                placeholder="Enter your password"
-                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
-                            />
-                        </div>
-                        <Description className="text-xs text-gray-500 mt-1">
-                            Must be at least 8 characters with 1 uppercase and 1 number
-                        </Description>
-                        <FieldError className="text-red-500 text-sm mt-1" />
-                    </TextField>
+                    </TextField>           
 
                     {/* Buttons */}
 
