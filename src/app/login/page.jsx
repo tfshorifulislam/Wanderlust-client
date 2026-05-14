@@ -2,6 +2,7 @@
 import { authClient } from "@/lib/auth-client";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
 
@@ -20,7 +21,7 @@ const LoginPage = () => {
             redirect('/')
         }
         if (error) {
-            alert('Sign up Faild')
+            toast.error('Sign up Faild')
         }
     }
 
