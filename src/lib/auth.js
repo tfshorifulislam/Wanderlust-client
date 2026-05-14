@@ -9,6 +9,12 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
     },
+    socialProviders: {
+        google: {
+            clientId: process.env.GOOGLE,
+            clientSecret: process.env.GOOGLE_SECRET
+        }
+    },
     database: mongodbAdapter(db, {
         client
     }),

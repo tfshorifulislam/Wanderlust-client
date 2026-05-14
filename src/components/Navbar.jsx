@@ -7,6 +7,8 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
+import { AiOutlineLogout } from "react-icons/ai";
+import { BiLogOutCircle } from "react-icons/bi";
 
 const Navbar = () => {
 
@@ -20,6 +22,9 @@ const Navbar = () => {
   console.log('user info', user)
 
 
+  const handleLogout = async () => {
+    await authClient.signOut();
+  }
 
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -71,14 +76,14 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-8 text-[15px] font-medium">
               <Link
                 href="/profile"
-                className={`flex items-center gap-2 ${isActive("/profile")}`}
+                className={`flex items-center gap-2`}
               >
                 <Avatar>
                   <Avatar.Image alt={user?.name} src={user?.image} />
                   <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
                 </Avatar>
               </Link>
-              <Button variant="danger">
+              <Button onClick={handleLogout} variant="danger">
                 Logout
               </Button>
             </div>
@@ -129,11 +134,19 @@ const Navbar = () => {
                 <Link
                   href="/profile"
                   onClick={closeMenu}
-                  className={`flex items-center gap-2 ${isActive("/profile")}`}
+                  className={`flex items-center mb-8 gap-2 ${isActive("/profile")}`}
                 >
                   <FaRegUser />
                   Profile
                 </Link>
+                <Button
+                  onClick={handleLogout}
+                  className='w-full'
+                  variant="danger"
+                >
+                  <BiLogOutCircle />
+                  Logout
+                </Button>
               </div>
             </div>
               :

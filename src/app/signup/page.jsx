@@ -25,6 +25,16 @@ const SignUpPage = () => {
             alert('Sign up Faild')
         }
     }
+
+
+    const handleGoogle = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        })
+    }
+
+
+
     return (
         <div className="min-h-screen bg-[#f0f4f8] flex items-center justify-center p-6">
             <div className="w-full max-w-2xl bg-white border border-gray-200 rounded-2xl shadow-sm p-10">
@@ -146,7 +156,7 @@ const SignUpPage = () => {
                 {/* Extra Design Elements (Optional but looks better) */}
                 <div className="text-center mt-8">
                     <div className="text-gray-400 text-sm mb-3">Or sign up with</div>
-                    <button className="w-full border border-gray-200 hover:bg-gray-50 py-3.5 rounded-sm flex items-center justify-center gap-3 transition-colors">
+                    <button onClick={handleGoogle} className="w-full cursor-pointer border border-gray-200 hover:bg-gray-50 py-3.5 rounded-sm flex items-center justify-center gap-3 transition-colors">
                         <span className="text-red-500 text-xl">G</span>
                         <span className="font-medium text-gray-700">Sign Up With Google</span>
                     </button>
