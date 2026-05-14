@@ -19,7 +19,7 @@ const Navbar = () => {
   // console.log(session)
 
   const user = session?.user;
-  console.log('user info', user)
+  // console.log('user info', user)
 
 
   const handleLogout = async () => {
