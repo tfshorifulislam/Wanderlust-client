@@ -2,7 +2,8 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
 import React from "react";
-import { Eye, Trash2, CalendarDays, Ticket } from "lucide-react";
+import {  CalendarDays, Ticket } from "lucide-react";
+import { BookingDeteleOp } from "@/components/BookingDeleteOp";
 
 const BookingsPage = async () => {
     const session = await auth.api.getSession({
@@ -88,7 +89,7 @@ const BookingsPage = async () => {
                                             <div className="flex items-center gap-2 text-[15px]">
                                                 <Ticket size={17} />
                                                 <p>
-                                                    Booking ID: {booking.bookingId}
+                                                    Booking ID: {booking._id}
                                                 </p>
                                             </div>
                                         </div>
@@ -103,15 +104,9 @@ const BookingsPage = async () => {
 
                                         {/* Buttons */}
                                         <div className="flex items-center gap-3">
-                                            <button className="border border-red-300 text-red-500 hover:bg-red-50 h-11 px-5 rounded-xl font-medium transition flex items-center gap-2">
-                                                <Trash2 size={16} />
-                                                Cancel
-                                            </button>
-
-                                            <button className="bg-cyan-600 hover:bg-cyan-700 text-white h-11 px-5 rounded-xl font-medium transition flex items-center gap-2">
-                                                <Eye size={16} />
-                                                View
-                                            </button>
+                                            <div>
+                                                <BookingDeteleOp booking={booking} />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
