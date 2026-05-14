@@ -1,12 +1,29 @@
 'use client';
+import { authClient } from "@/lib/auth-client";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
-    const onSubmit = (e) => {
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries())
         console.log(user, 'user info')
+
+        const { data, error } = await authClient.signUp.email({
+            email: user.email,
+            password: user.password,
+            name: user.name,
+            image: user.image,
+        })
+        console.log(data, error)
+        if (data) {
+            redirect('/')
+        }
+        if (error) {
+            alert('Sign up Faild')
+        }
     }
     return (
         <div className="min-h-screen bg-[#f0f4f8] flex items-center justify-center p-6">
@@ -112,7 +129,7 @@ const SignUpPage = () => {
                             Must be at least 8 characters with 1 uppercase and 1 number
                         </Description>
                         <FieldError className="text-red-500 text-sm mt-1" />
-                    </TextField>           
+                    </TextField>
 
                     {/* Buttons */}
 
