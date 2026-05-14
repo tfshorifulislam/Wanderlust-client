@@ -19,7 +19,7 @@ const BookingsPage = async () => {
     const data = await res.json();
 
     const bookings = Array.isArray(data) ? data : data ? [data] : [];
-
+    console.log(bookings)
     return (
         <section className="min-h-screen bg-[#f7f8fa] py-10 px-4 md:px-6">
             <div className="max-w-7xl mx-auto">
@@ -74,8 +74,8 @@ const BookingsPage = async () => {
                                             <div className="flex items-center gap-2 text-[15px]">
                                                 <CalendarDays size={17} />
                                                 <p>
-                                                    Departure: {new Date(booking.departureDate).toLocaleDateString(
-                                                        "en-US",
+                                                    Departure: {new Date(booking.depertureDate).toLocaleDateString(
+                                                        "en-GB",
                                                         {
                                                             year: "numeric",
                                                             month: "long",
