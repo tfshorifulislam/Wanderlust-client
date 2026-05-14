@@ -1,115 +1,166 @@
 'use client';
-import { FaUser, FaEnvelope, FaLock, FaGoogle } from 'react-icons/fa';
+import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 
-const WanderlustSignUp = () => {
-  return (
-    <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-4">
-      <div className="w-full max-w-[720px] border border-[#e2e8f0] rounded-2xl bg-white shadow-sm p-10">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-semibold text-gray-900">Create Account</h1>
-          <p className="text-gray-500 mt-1">Start your adventure with Wanderlust</p>
+const SignUpPage = () => {
+    return (
+        <div className="min-h-screen bg-[#f0f4f8] flex items-center justify-center p-6">
+            <div className="w-full max-w-2xl bg-white border border-gray-200 rounded-2xl shadow-sm p-10">
+
+                {/* Header */}
+                <div className="text-center mb-10">
+                    <h1 className="text-3xl font-semibold text-gray-900">Create Account</h1>
+                    <p className="text-gray-500 mt-1">Start your adventure with Wanderlust</p>
+                </div>
+
+                <Form className="flex flex-col gap-6">
+
+                    {/* Name Field */}
+                    <TextField
+                        isRequired
+                        name="name"
+                        type="text"
+                        validate={(value) => {
+                            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                                return "Please enter a valid email address";
+                            }
+                            return null;
+                        }}
+                    >
+                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
+                            Full Name
+                        </Label>
+                        <div className="relative">
+                            <Input
+                                placeholder="Enter your name"
+                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
+                            />
+                        </div>
+                        <FieldError className="text-red-500 text-sm mt-1" />
+                    </TextField>
+
+
+                    {/* Email Field */}
+                    <TextField
+                        isRequired
+                        name="email"
+                        type="email"
+                        validate={(value) => {
+                            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                                return "Please enter a valid email address";
+                            }
+                            return null;
+                        }}
+                    >
+                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
+                            Email Address
+                        </Label>
+                        <div className="relative">
+                            <Input
+                                placeholder="Enter your email"
+                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
+                            />
+                        </div>
+                        <FieldError className="text-red-500 text-sm mt-1" />
+                    </TextField>
+
+                    {/* Password Field */}
+                    <TextField
+                        isRequired
+                        minLength={8}
+                        name="password"
+                        type="password"
+                        validate={(value) => {
+                            if (value.length < 8) {
+                                return "Password must be at least 8 characters";
+                            }
+                            if (!/[A-Z]/.test(value)) {
+                                return "Password must contain at least one uppercase letter";
+                            }
+                            if (!/[0-9]/.test(value)) {
+                                return "Password must contain at least one number";
+                            }
+                            return null;
+                        }}
+                    >
+                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
+                            Password
+                        </Label>
+                        <div className="relative">
+                            <Input
+                                placeholder="Enter your password"
+                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
+                            />
+                        </div>
+                        <Description className="text-xs text-gray-500 mt-1">
+                            Must be at least 8 characters with 1 uppercase and 1 number
+                        </Description>
+                        <FieldError className="text-red-500 text-sm mt-1" />
+                    </TextField>
+
+
+                    {/* Confirm Password Field */}
+                    <TextField
+                        isRequired
+                        minLength={8}
+                        name="password"
+                        type="password"
+                        validate={(value) => {
+                            if (value.length < 8) {
+                                return "Password must be at least 8 characters";
+                            }
+                            if (!/[A-Z]/.test(value)) {
+                                return "Password must contain at least one uppercase letter";
+                            }
+                            if (!/[0-9]/.test(value)) {
+                                return "Password must contain at least one number";
+                            }
+                            return null;
+                        }}
+                    >
+                        <Label className="text-sm font-medium text-gray-700 mb-1.5 block">
+                            Confirm Password
+                        </Label>
+                        <div className="relative">
+                            <Input
+                                placeholder="Enter your password"
+                                className="w-full bg-[#f8fafc] border border-gray-200 rounded-sm py-3 px-4 focus:outline-none focus:border-[#14b8a6] text-gray-700"
+                            />
+                        </div>
+                        <Description className="text-xs text-gray-500 mt-1">
+                            Must be at least 8 characters with 1 uppercase and 1 number
+                        </Description>
+                        <FieldError className="text-red-500 text-sm mt-1" />
+                    </TextField>
+
+                    {/* Buttons */}
+
+                    <Button
+                        type="submit"
+                        className="flex-1 w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3.5 rounded-sm  transition-colors"
+                    >
+                        Create Account
+                    </Button>
+
+
+                </Form>
+
+                {/* Extra Design Elements (Optional but looks better) */}
+                <div className="text-center mt-8">
+                    <div className="text-gray-400 text-sm mb-3">Or sign up with</div>
+                    <button className="w-full border border-gray-200 hover:bg-gray-50 py-3.5 rounded-sm flex items-center justify-center gap-3 transition-colors">
+                        <span className="text-red-500 text-xl">G</span>
+                        <span className="font-medium text-gray-700">Sign Up With Google</span>
+                    </button>
+                </div>
+
+                <p className="text-center text-sm text-gray-600 mt-6">
+                    Already have an account?{' '}
+                    <a href="#" className="text-sky-500 hover:underline font-medium">Sign In</a>
+                </p>
+
+            </div>
         </div>
-
-        {/* Form */}
-        <div className="space-y-6">
-          {/* Full Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Full Name
-            </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                <FaUser />
-              </div>
-              <input
-                type="text"
-                placeholder="Enter your name"
-                className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#14b8a6] transition-colors"
-              />
-            </div>
-          </div>
-
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Email Address
-            </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                <FaEnvelope />
-              </div>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#14b8a6] transition-colors"
-              />
-            </div>
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Password
-            </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                <FaLock />
-              </div>
-              <input
-                type="password"
-                placeholder="Create a password"
-                className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#14b8a6] transition-colors"
-              />
-            </div>
-          </div>
-
-          {/* Confirm Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                <FaLock />
-              </div>
-              <input
-                type="password"
-                placeholder="Confirm your password"
-                className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#14b8a6] transition-colors"
-              />
-            </div>
-          </div>
-
-          {/* Create Account Button */}
-          <button className="w-full cursor-pointer bg-sky-500 hover:bg-sky-700 text-white font-medium py-3.5 rounded-xl transition-colors mt-4">
-            Create Account
-          </button>
-
-          {/* Divider */}
-          <div className="flex items-center gap-3 my-4">
-            <div className="flex-1 h-px bg-gray-200"></div>
-            <span className="text-gray-400 text-sm">Or sign up with</span>
-            <div className="flex-1 h-px bg-gray-200"></div>
-          </div>
-
-          {/* Google Button */}
-          <button className="w-full border cursor-pointer border-gray-200 hover:bg-gray-50 py-3.5 rounded-xl flex items-center justify-center gap-3 transition-colors">
-            <FaGoogle className="text-red-500" />
-            <span className="font-medium text-gray-700">Sign Up With Google</span>
-          </button>
-
-          {/* Login Link */}
-          <p className="text-center text-sm text-gray-600 mt-6">
-            Already have an account?{' '}
-            <a href="#" className="text-sky-500 hover:underline font-medium">
-              Sign In
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default WanderlustSignUp;
+export default SignUpPage;
