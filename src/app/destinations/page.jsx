@@ -1,17 +1,27 @@
 import React from 'react';
 import DestinationCard from '@/components/DestinationCard';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+
 
 const Destinations = async () => {
-  const res = await fetch('http://localhost:5000/destinations', {
-    cache: 'no-store'
-  });
 
+  //server side token access system
+  const { token } = await auth.api.getToken({
+    headers: await headers()
+  })
+
+  const res = await fetch('http://localhost:5000/destinations', {
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
   const destinations = await res.json();
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">

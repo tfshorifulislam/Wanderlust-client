@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button, Select, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField } from "@heroui/react";
 import { redirect } from "next/navigation";
 
@@ -10,15 +11,20 @@ export function UpdateModal({ destination }) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const destination = Object.fromEntries(formData.entries());
-        console.log('New Destination:', destination);
+        // console.log('New Destination:', destination);
+
+        const { data: tokenData } = await authClient.token()
         const res = await fetch(`http://localhost:5000/destinations/${_id}`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${tokenData.token}`
+             },
             body: JSON.stringify(destination)
         })
 
         const data = await res.json();
-        console.log('Response from modal server:', data);
+        // console.log('Response from modal server:', data);
         redirect(`/destinations/${_id}`);
     }
 

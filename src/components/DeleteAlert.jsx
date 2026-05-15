@@ -1,21 +1,27 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 export function DeleteAlert({ dest }) {
 
     const { _id } = dest;
     const handleDelete = async () => {
+
+        const { data: tokenData } = await authClient.token()
         const res = await fetch(`http://localhost:5000/destinations/${_id}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${tokenData.token}`
             }
         });
 
         const data = await res.json();
         console.log(data);
+        toast.success(`${dest.destinationName} is deleted`)
         redirect('/destinations');
     };
 

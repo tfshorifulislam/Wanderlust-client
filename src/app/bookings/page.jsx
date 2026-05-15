@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
 import React from "react";
-import {  CalendarDays, Ticket } from "lucide-react";
+import { CalendarDays, Ticket } from "lucide-react";
 import { BookingDeteleOp } from "@/components/BookingDeleteOp";
 
 const BookingsPage = async () => {
@@ -12,9 +12,17 @@ const BookingsPage = async () => {
 
     const user = session?.user;
 
+    //server side token access system
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+
     // Fetch bookings
     const res = await fetch(`http://localhost:5000/bookings/${user?.id}`, {
-        cache: "no-store",
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+
     });
 
     const data = await res.json();
